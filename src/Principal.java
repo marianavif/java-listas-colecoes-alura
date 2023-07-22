@@ -8,11 +8,11 @@ public class Principal {
 
         Scanner leitura = new Scanner(System.in);
         var cartao = new Cartao();
-        double saldo;
+        double limiteDisponivel;
 
         System.out.println("Digite o limite do cartão");
-        cartao.setSaldo(leitura.nextDouble());
-        saldo = cartao.getSaldo();
+        cartao.setLimite(leitura.nextDouble());
+        limiteDisponivel = cartao.getLimite();
         List<Compra> listaDeCompras = new ArrayList<>();
 
 
@@ -23,10 +23,10 @@ public class Principal {
             compra.setDescricao(leitura.next());
             System.out.println("Digite o valor da compra");
             compra.setValor(leitura.nextDouble());
-            if (compra.getValor() <= saldo) {
+            if (compra.getValor() <= limiteDisponivel) {
                 listaDeCompras.add(compra);
-                saldo -= compra.getValor();
-                System.out.printf("Compra realizada! O saldo no seu cartão é de %.2f\n",saldo);
+                limiteDisponivel -= compra.getValor();
+                System.out.printf("Compra realizada! O limite disponível no seu cartão é de %.2f\n",limiteDisponivel);
             } else {
                 System.out.println("Limite do cartão atingido! Compra não pode ser feita");
             }
